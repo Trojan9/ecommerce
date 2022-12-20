@@ -248,6 +248,7 @@ text-align: end;
   position: absolute;
   /* top: -35%;
   left: 8%; */
+  /* adding the -25% to top margin allows it come up making it look like a 3D stuff */
   top: -25%;
   left: 25%;
 }
