@@ -1,21 +1,34 @@
-import React from 'react'
+import React from 'react';
 
-const Home = () => {
-  return (
-    <>
-      HeroBanner
+import { client } from '../lib/client';
+import { Product, FooterBanner, HeroBanner } from '../components';
 
-      <div className='products-heading'>
-        <h2>Best Selling Products</h2>
-        <p>Speakers of many variations</p>
-      </div>
-      <div className='products-container'>
-        {['product 1', 'Product 2'].map((product)=>product)}
-      </div>
+const Home = ({ products, bannerData }) => (
+  <div>
+    <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
+    <div className="products-heading">
+      <h2>Best Seller Products</h2>
+      <p>speaker There are many variations passages</p>
+    </div>
 
-      Footer
-    </>
-  )
+    <div className="products-container">
+      {products?.map((product) => <Product key={product._id} product={product} />)}
+    </div>
+
+    <FooterBanner footerBanner={bannerData && bannerData[0]} />
+  </div>
+);
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+// will pass the returned data or params to the Home function
+  return {
+    props: { products, bannerData }
+  }
 }
 
 export default Home;
