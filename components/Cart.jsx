@@ -143,7 +143,7 @@ const Cart = () => {
                   req.write(params)
                   req.end()
               }}>
-                Pay with Stripe
+                Pay with PayStack
               </button>
             </div>
           </div>
