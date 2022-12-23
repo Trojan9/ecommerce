@@ -16,6 +16,7 @@ const ProductDetails = ({ product, products }) => {
     setShowCart(true);
   }
 
+  
   return (
     <div>
       <div className="product-detail-container">
